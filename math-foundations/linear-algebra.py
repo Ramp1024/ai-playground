@@ -1,3 +1,6 @@
+import numpy as np
+
+
 # Vectors from Scratch
 class Vector:
     def __init__(self, components):
@@ -86,7 +89,7 @@ point = Vector([3, 1])
 rotated = rotation_90 @ point
 print(f"Original: {point}")
 print(f"Rotated 90°: {rotated}")
-
+print("---------------------------")
 
 # Linear Independence and Projection
 
@@ -116,3 +119,24 @@ def is_linearly_independent(vectors):
                 rows[row] = [rows[row][j] - factor * rows[rank][j] for j in range(dim)]
         rank += 1
     return rank == n
+
+
+# In numpy
+
+
+a = np.array([1, 2, 3], dtype=float)
+b = np.array([4, 5, 6], dtype=float)
+
+print(f"a+b = {a + b}")
+print(f"a . b = {np.dot(a, b)}")
+print(f"|a| = {np.linalg.norm(a):.4f}")
+print(f"cosine = {np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)):.4f}")
+print("---------------------------")
+
+rng = np.random.default_rng(seed=42)
+print(rng.standard_normal((2, 3)))
+rng_recreated = np.random.default_rng(seed=42)
+print(rng_recreated.standard_normal((2, 3)))
+W = rng.standard_normal((2, 3)) * 0.1
+x = np.array([1.0, 0.5, -0.3])
+print(f"Wx = {W @ x}")
